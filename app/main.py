@@ -4,7 +4,6 @@ from api import routers
 from pathlib import Path
 from core.config import settings
 from fastapi.middleware.cors import CORSMiddleware
-from mangum import Mangum
 
 
 BASE_PATH = Path(__file__).resolve().parent
@@ -37,7 +36,6 @@ app.include_router(root_router)
 app.include_router(routers.api_router, prefix='/api')
 
 
-handler = Mangum(app)
 
 
 if __name__ == "__main__":
