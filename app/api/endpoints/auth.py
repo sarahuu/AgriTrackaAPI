@@ -2,10 +2,10 @@ from fastapi import APIRouter,Depends,HTTPException,status
 from fastapi.security import OAuth2PasswordBearer
 from schemas.auth import Token,LoginForm
 from core.config import settings
-from core.auth import verify_access_token,verify_password,create_access_token,get_password_hash
+from core.auth import verify_access_token,verify_password,create_access_token,get_password_hash,oauth2_scheme
+
 
 router = APIRouter()
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl='token')
 
 
 @router.post('/login', status_code=200, response_model=Token)
