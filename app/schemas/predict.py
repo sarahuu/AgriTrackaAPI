@@ -6,4 +6,5 @@ class InputVar(BaseModel):
     humidity:float
 
 class Prediction(BaseModel):
-    result:list
+    prediction:str
+    recommendation:str

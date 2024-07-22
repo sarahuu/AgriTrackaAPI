@@ -10,10 +10,10 @@ router = APIRouter()
 
 
 @router.post('/predict', status_code=200, response_model=Prediction,dependencies=[Depends(JWTBearer())])
-def login(form_data:InputVar):
+def predict(form_data:InputVar):
     model = MLModel()
     try:
         result = model.predict(light_intensity=form_data.intensity, temperature=form_data.temperature, humidity=form_data.humidity)
-        return {"result":result}
-    except:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Could not make predictions", headers={"WWW-Aunthenticate":"Bearer"})
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e), headers={"WWW-Aunthenticate":"Bearer"})
