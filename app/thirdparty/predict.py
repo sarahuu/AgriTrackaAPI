@@ -36,16 +36,12 @@ class MLModel:
         prompt = """I will input the state of a farmer's plant in Lagos. I want you to return a very comprehensive recommendation on what the farmer should do to the plant mainly in terms of light intensity, temperature and humidity of the plant".
         Q: """ + ourNote + """
         A:"""
-        print('done')
         response = openai.ChatCompletion.create(
         engine="helpingfarmers",
         messages = [{"role":"system", "content":"You are a helpful assistant."},
                     {"role":"user","content":prompt},])
-        print('doe')
-        print(response)
 
         recommendation = response['choices'][0]['message']['content']
-        print(response)
         recommendation = self.remove_markdown(recommendation)
         return {'prediction':ourNote, 'recommendation':recommendation}
 
