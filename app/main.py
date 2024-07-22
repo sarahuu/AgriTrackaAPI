@@ -1,8 +1,8 @@
 from fastapi import FastAPI,APIRouter,Request
 
-from api import routers
+from app.api import routers
 from pathlib import Path
-from core.config import settings
+from app.core.config import settings
 from fastapi.middleware.cors import CORSMiddleware
 
 
@@ -42,4 +42,4 @@ if __name__ == "__main__":
     # Use this for debugging purposes only
     import uvicorn
 
-    uvicorn.run(app, host="0.0.0.0", port=8001, log_level="debug")
+    uvicorn.run("main:app", host="0.0.0.0", port=8001, log_level="debug")

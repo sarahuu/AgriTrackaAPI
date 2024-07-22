@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from api.endpoints import auth, predict
+from app.api.endpoints import auth, predict
 
 
 

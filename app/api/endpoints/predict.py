@@ -1,8 +1,8 @@
 from fastapi import APIRouter,Depends,HTTPException,status
-from core.config import settings
-from schemas.predict import InputVar, Prediction
-from thirdparty.predict import MLModel
-from core.auth import oauth2_scheme, get_current_user,JWTBearer
+from app.core.config import settings
+from app.schemas.predict import InputVar, Prediction
+from app.thirdparty.predict import MLModel
+from app.core.auth import oauth2_scheme, get_current_user,JWTBearer
 from pathlib import Path
 
 # Construct the path to the model file from the root directory

@@ -1,8 +1,8 @@
 from fastapi import APIRouter,Depends,HTTPException,status
 from fastapi.security import OAuth2PasswordBearer
-from schemas.auth import Token,LoginForm
-from core.config import settings
-from core.auth import verify_access_token,verify_password,create_access_token,get_password_hash,oauth2_scheme
+from app.schemas.auth import Token,LoginForm
+from app.core.config import settings
+from app.core.auth import verify_access_token,verify_password,create_access_token,get_password_hash,oauth2_scheme
 
 
 router = APIRouter()
@@ -25,7 +25,7 @@ def login(form_data:LoginForm):
     **Authentication:**
     - No authentication required to access this endpoint.
     """
-    
+
     if form_data.username != settings.API_USERNAME or not verify_password(form_data.password, get_password_hash(settings.API_PASSWORD)):
         print(settings.API_USERNAME)
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid username or password", headers={"WWW-Aunthenticate":"Bearer"})
