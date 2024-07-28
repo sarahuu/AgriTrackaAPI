@@ -21,11 +21,12 @@ class MLModel:
         model_path = current_directory / 'app' / 'thirdparty' / 'plant_growth_model.joblib'
 
         self.model = joblib.load(model_path)
-    def predict(self,light_intensity,temperature,humidity):
+    def predict(self,light_intensity,temperature,humidity,soil_moisture):
         input=pd.DataFrame({
             'Light Intensity': [float(light_intensity)],
             'Temperature': [float(temperature)],
-            'Humidity': [float(humidity)]
+            'Humidity': [float(humidity)],
+            'Soil Moisture':[int(soil_moisture)]
         })
         predicted_status = self.model.predict(input)
         # return predicted_status
@@ -33,7 +34,7 @@ class MLModel:
         # Set up OpenAI Chat API
         # CHAT_COMPLETIONS_MODEL = 'helping-farmers'
         ourNote = predicted_status[0]
-        prompt = """I will input the state of a farmer's plant in Lagos. I want you to return a very comprehensive recommendation on what the farmer should do to the plant mainly in terms of light intensity, temperature and humidity of the plant".
+        prompt = """I will input the state of a farmer's plant in Lagos. I want you to return a very comprehensive recommendation on what the farmer should do to the plant mainly in terms of light intensity, temperature, soil moisture and humidity of the plant. Note: for soil moisture, 0 represent very low, 1 represents medium, 2 represents High".
         Q: """ + ourNote + """
         A:"""
         response = openai.ChatCompletion.create(

@@ -1,5 +1,4 @@
 from fastapi import FastAPI,APIRouter,Request
-
 from app.api import routers
 from pathlib import Path
 from app.core.config import settings

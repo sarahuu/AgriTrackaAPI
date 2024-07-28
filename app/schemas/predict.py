@@ -4,6 +4,7 @@ class InputVar(BaseModel):
     intensity:float
     temperature:float
     humidity:float
+    soil_moisture:int
 
 class Prediction(BaseModel):
     prediction:str

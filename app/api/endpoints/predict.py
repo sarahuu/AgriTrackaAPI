@@ -28,7 +28,7 @@ def predict(form_data:InputVar):
     """
     model = MLModel()
     try:
-        result = model.predict(light_intensity=form_data.intensity, temperature=form_data.temperature, humidity=form_data.humidity)
+        result = model.predict(light_intensity=form_data.intensity, temperature=form_data.temperature, humidity=form_data.humidity, soil_moisture=form_data.soil_moisture)
         return result
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e), headers={"WWW-Aunthenticate":"Bearer"})
